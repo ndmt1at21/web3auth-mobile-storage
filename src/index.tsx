@@ -1,4 +1,5 @@
 import { NativeModules, Platform } from 'react-native';
+import MobileStorageModule from './MobileStorageModule';
 
 const LINKING_ERROR =
   `The package 'web3auth-mobile-storage-module' doesn't seem to be linked. Make sure: \n\n` +
@@ -6,7 +7,7 @@ const LINKING_ERROR =
   '- You rebuilt the app after installing the package\n' +
   '- You are not using Expo Go\n';
 
-const Web3authMobileStorageModule = NativeModules.Web3authMobileStorageModule
+NativeModules.Web3authMobileStorageModule
   ? NativeModules.Web3authMobileStorageModule
   : new Proxy(
       {},
@@ -17,6 +18,5 @@ const Web3authMobileStorageModule = NativeModules.Web3authMobileStorageModule
       }
     );
 
-export function multiply(a: number, b: number): Promise<number> {
-  return Web3authMobileStorageModule.multiply(a, b);
-}
+export * from './errors';
+export default MobileStorageModule;
